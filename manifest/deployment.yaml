@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: thanos-deployment
+  namespace: do-deployment
+  labels:
+    app: thanos
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: thanos
+  template:
+    metadata:
+      labels:
+        app: thanos
+    spec:
+      containers:
+      - name: thanos
+        image: gedharizka/thanos:latest
+        ports:
+        - containerPort: 80
