@@ -2,18 +2,18 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: thanos-deployment
-  namespace: do-deployment
+  namespace: thanos
   labels:
-    app: thanos
+    app: thanos-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: thanos
+      app: thanos-app
   template:
     metadata:
       labels:
-        app: thanos
+        app: thanos-app
     spec:
       containers:
       - name: thanos

@@ -2,13 +2,13 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: thanos-ingress
-  namespace: do-deployment
+  namespace: thanos
   annotations:
     kubernetes.io/ingress.class: traefik
 spec:
   ingressClassName: traefik
   rules:
-  - host: thanos.gedha.id
+  - host: thanos.gedha.web.id
     http:
       paths:
       - path: /

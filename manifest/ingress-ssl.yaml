@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: thanos-ingress
+  namespace: thanos
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    # Opsional: Paksa Traefik melakukan redirect dari HTTP ke HTTPS
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+spec:
+  ingressClassName: traefik
+  rules:
+  - host: thanos.gedha.web.id
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: thanos-service
+            port:
+              number: 80
+  tls:
+    - hosts:
+      - thanos.gedha.web.id  # Ganti dengan domain Anda yang valid
+      secretName: thanos-tls-secret # Nama secret tempat cert-manager menyimpan SSL

@@ -2,12 +2,12 @@ apiVersion: v1
 kind: Service
 metadata:
   name: thanos-service
-  namespace: do-deployment
+  namespace: thanos
   labels:
-    app: thanos
+    app: thanos-app
 spec:
   selector:
-    app: thanos
+    app: thanos-app
   ports:
   - protocol: TCP
     port: 80         # Port yang digunakan di dalam cluster
